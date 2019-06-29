@@ -1,0 +1,64 @@
+@import "../../../../../../../assets/scss/mixins/loaders/loader-boxes";
+
+$gridPad: 5px;
+$speed: 0.2s;
+
+div.inmate-list {
+    display: block;
+    position: relative;
+    min-height: 7rem;
+    transition: min-height $speed;
+    &::before{
+        content: '';
+        display: block;
+        @include loader-boxes(10px, #888, 1s, 5px);
+        position: absolute;
+        left: 50%;
+        right: 50%;
+        opacity: 1;
+        transition: opacity $speed;
+    }
+    > * {
+        display: block;
+        opacity: 0;
+        transition: opacity $speed;
+    }
+    &.loaded {
+        min-height: 0;
+        &::before {
+            opacity: 0;
+        }
+        > * {
+            opacity: 1;
+        }
+    }
+}
+
+
+
+.panel {
+    margin-top: 1rem;
+}
+
+.panel.last {
+    margin-bottom: 3rem;
+}
+
+@media all and (min-width: 768px) {
+    .oc-inmates-toggle-wrapper {
+        padding-left: $gridPad;
+        text-align: right;
+    }
+    .oc-search-box-wrapper {
+        padding-right: $gridPad;
+    }
+    
+}
+
+@media all and (max-width: 768px) {
+   
+    .oc-inmates-toggle-wrapper {
+        
+        padding-top: $gridPad;
+    }
+}

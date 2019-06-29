@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <i class="fa fa-user fa-lg"></i> Options
+            </h4>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="reportType">Report Type:</label>
+                <select id="reportType" [(ngModel)]="panelArgs.viewConfig.reportType">
+                    <option *ngFor="let rt of reportTypes" [value]="rt.id">{{rt.name}}</option>
+                </select>
+            </div>
+        </div>
+    </div>

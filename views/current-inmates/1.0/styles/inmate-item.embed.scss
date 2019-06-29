@@ -1,0 +1,194 @@
+$padding: 0.1em;
+
+@media (min-width:768px) {
+    :host /deep/ td.oc-table-right { 
+        text-align: right; 
+    }
+    .oc-inmates-timestamp {
+        text-align: right;
+    }
+}
+@media all and (max-width:768px) {
+
+    :host /deep/ .ui-datatable-reflow thead th, :host /deep/ .ui-datatable-reflow tfoot td {
+        display: none !important;
+    }
+
+
+
+    :host /deep/ .ui-datatable-reflow .ui-datatable-data > tr > td {
+        text-align: left;
+        display: block;
+        border: 0 none;
+        width: 100% !important;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		box-sizing: border-box;
+		float: left;
+		clear: left;
+    }
+
+    :host /deep/ .ui-datatable-reflow .ui-datatable-data.ui-widget-content {
+        border: 0 none;
+    }
+
+    :host /deep/ .ui-datatable-reflow .ui-datatable-data tr.ui-widget-content {
+        border-left: 0 none;
+        border-right: 0 none;
+    }
+
+    :host /deep/ .ui-datatable-reflow .ui-datatable-data td .ui-column-title {
+        padding: .4em;
+        min-width: 30%;
+        display: inline-block !important;
+        margin: -.4em 1em -.4em -.4em;
+        font-weight: bold;
+    }
+
+    :host /deep/ .ui-datatable-reflow.ui-datatable-scrollable .ui-datatable-scrollable-:host /deep/ colgroup {
+        display: block;
+    }
+    .smaller {
+        padding-left: 1.75em;
+    }
+}
+
+:host /deep/ .ui-datatable-reflow .ui-datatable-data td .ui-column-title {
+    display: none;
+}
+
+/*
+:host /deep/ div .ui-datatable-data tr.ui-datatable-odd.ui-widget-content {
+    background-color: bisque;
+}
+*/
+:host /deep/ .ui-datatable-header p-header {
+    font-size: 1.25em;
+}
+
+
+
+:host /deep/ .ui-datatable .ui-datatable-header,
+:host /deep/ .ui-datatable .ui-datatable-footer {
+    padding: $padding 1.25em;
+    background-color: #f5f5f5;
+}
+:host /deep/ .ui-datatable .ui-editable-column.ui-cell-editing .ui-cell-editor {
+    font-size: medium;
+}
+:host /deep/ .ui-datatable .ui-paginator {
+    padding: 0;
+}
+:host /deep/ .ui-datatable .ui-datatable-thead > tr > th,
+:host /deep/ .ui-datatable .ui-datatable-tfoot > tr > td {
+    background-color: #ffffff;
+    padding: $padding 0.2em;
+    border-color: #c7c7c7;
+    color: #373a3c;
+}
+:host /deep/ .ui-datatable thead th.ui-sortable-column:not(.ui-state-active):hover {
+    background-color: #e3e3e3;
+}
+:host /deep/ .ui-datatable thead th.ui-state-active {
+    background-color: #0275d8;
+    border-color: #0267bf;
+    color: #ffffff;
+}
+:host /deep/ .ui-datatable thead th.ui-state-active .ui-dropdown-item {
+    color: #373a3c;
+}
+:host /deep/ .ui-datatable thead th:focus {
+    outline: 0 none;
+    background-color: #f0f3f5;
+}
+:host /deep/ .ui-datatable thead th:focus.ui-state-active {
+    background-color: #0283f1;
+}
+:host /deep/ .ui-datatable tfoot th.ui-state-default {
+    background-color: #ffffff;
+    padding: 0.375em $padding;
+    border-color: #c7c7c7;
+    color: #373a3c;
+}
+:host /deep/ .ui-datatable .ui-datatable-data tr.ui-datatable-even {
+    background-color: #f7f7f7;
+}
+:host /deep/ .ui-datatable .ui-datatable-data tr.ui-datatable-even.ui-state-highlight {
+    background-color: #0275d8;
+    color: #ffffff;
+    border-color: #0267bf;
+}
+:host /deep/ .ui-datatable .ui-datatable-data tr.ui-state-highlight {
+    border-color: #0267bf;
+}
+:host /deep/ .ui-datatable .ui-datatable-data.ui-datatable-hoverable-rows > tr.ui-widget-content:not(.ui-state-highlight):hover {
+    background-color: #e3e3e3;
+    cursor: pointer;
+}
+:host /deep/ .ui-datatable .ui-datatable-data tr.ui-row-editing.ui-datatable-odd,
+:host /deep/ .ui-datatable .ui-datatable-data tr.ui-row-editing.ui-datatable-even {
+    border-color: #c7c7c7;
+    border-bottom-color: #0275d8;
+}
+:host /deep/ .ui-datatable .ui-datatable-data > tr > td {
+    padding: $padding 0.2em;
+}
+:host /deep/ .ui-datatable .ui-datatable-data tr td.ui-editable-column input {
+    width: 100%;
+    box-sizing: border-box;
+    border: 0 none;
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+}
+:host /deep/ .ui-datatable .ui-datatable-scrollable-header,
+:host /deep/ .ui-datatable .ui-datatable-scrollable-footer {
+    background-color: #f5f5f5;
+}
+:host /deep/ .ui-datatable .ui-datatable-scrollable-header .ui-datatable-scrollable-header-box td,
+:host /deep/ .ui-datatable .ui-datatable-scrollable-footer .ui-datatable-scrollable-header-box td {
+    color: #373a3c;
+}
+:host /deep/ .ui-datatable .ui-datatable-data tr.ui-rowgroup-header {
+    font-weight: bold;
+}
+:host /deep/ .ui-datatable .ui-rowgroup-header {
+    color: #2d353c;
+}
+
+:host /deep/ .ui-datatable .ui-rowgroup-header a {
+    color: #2d353c;
+}
+
+
+
+:host /deep/ .panel-heading .panel-title a {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+
+:host /deep/ .oc-inmate-table table {
+    table-layout: auto;
+}
+
+
+h4.panel-title {
+    text-align: center;
+    font-weight: bold;
+}
+
+.img-inmate {
+    padding: 4px;
+    background-color: #fff;
+    border: 1px solid rgba(0,0,0,0.2);
+    box-shadow:0 1px 3px #000;
+    text-align: center;
+    // position: relative;
+    // float: right;
+    width: 211px;
+}
+
+.smaller {
+    font-size: 75%;
+}

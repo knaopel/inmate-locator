@@ -1,0 +1,23 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <i class="fa fa-database fa-lg"></i> Options
+        </h4>
+    </div>
+    <div class="panel-body">
+        <div class="form-group">
+            <label for="zumoUrl">URL:</label>
+            <input id="zumoUrl" class="form-control" [(ngModel)]="panelArgs.dataConfig.url" />
+            <label for="zumoKey">App Key:</label>
+            <input id="zumoKey" class="form-control" [(ngModel)]="panelArgs.dataConfig.appKey" />
+            <label for="zumoMax">Inmates per page:</label>
+            <input id="zumoMax" class="form-control" [(ngModel)]="panelArgs.dataConfig.maxResults" />
+            <label for="zumoOrderBy">Order By:</label>
+            <input id="zumoOrderBy" class="form-control" [(ngModel)]="panelArgs.dataConfig.orderBy" />
+            <label for="zumoFilter">Filter:</label>
+            <input id="zumoFilter" class="form-control" [(ngModel)]="panelArgs.dataConfig.filter" />
+            <label for="zumoTable">Table:</label>
+            <input id="zumoTable" class="form-control" [(ngModel)]="panelArgs.dataConfig.table" />
+        </div>
+    </div>
+</div>

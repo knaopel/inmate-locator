@@ -1,0 +1,63 @@
+{
+    "name": "InmateLocator",
+    "description": "Display a listing of current inmates.",
+    "version": "1.0",
+    "views": {
+        "sources": [
+            {
+                "name": "CurrentInmates",
+                "description": "Listing view for Current Inmates",
+                "version": "1.0",
+                "friendlyName": "Current Inmates",
+                "type": "View",
+                "mainURL": "definitions/inmate-locator/views/current-inmates/1.0/current-inmates.module.js",
+                "configURL": "definitions/inmate-locator/views/current-inmates/1.0/current-inmates-config.module.js",
+                "icon": "list-alt",
+                "dataSources": [
+                    "ZUMO,Data,1.0"
+                ],
+                "requiredFields": [
+                    "Title",
+                    "EventDate",
+                    "Description",
+                    "Category"
+                ]
+            }
+        ],
+        "current": "CurrentInmates,View,1.0",
+        "configs": {
+            "CurrentInmates,View,1.0": {
+                "reportType": "c"
+            }
+        }
+    },
+    "data": {
+        "sources": [
+            {
+                "name": "ZUMO",
+                "friendlyName": "Azure Mobile App Service",
+                "version": "1.0",
+                "type": "Data",
+                "description": "Azure Mobile App Services Data Provider",
+                "mainURL": "definitions/inmate-locator/datasources/zumo/1.0/zumo.service.js",
+                "configURL": "definitions/inmate-locator/datasources/zumo/1.0/zumo-config.module.js"
+            }
+        ],
+        "current": "ZUMO,Data,1.0",
+        "configs": {
+            "ZUMO,Data,1.0": {
+                "url": "https://[service-name].azurewebsites.net",
+                "appKey": "[app-key-here]",
+                "maxResults": "30",
+                "orderBy": "lastName asc, firstName asc",
+                "filter": "(releaseDate eq null)",
+                "table": "inmates"
+            }
+        }
+    },
+    "toolbar": {
+        "show": false,
+        "showSearch": true,
+        "searchPlaceHolder": "Search"
+    }
+}

@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-sm-4">
+        <button type="button" class="btn btn-default btn-block" [disabled]="isFirstPage()" (click)="onButtonClick($event, true)">
+            <i class="fa fa-chevron-left" #revIcon></i>
+        </button>
+    </div>
+    <div class="col-sm-4 text-center">
+Page {{getPage() + 1}} of {{getPageCount()}}
+    </div>
+    <div class="col-sm-4">
+        <button type="button" class="btn btn-default btn-block" [disabled]="isLastPage()" (click)="onButtonClick($event)">
+            <i class="fa fa-chevron-right" #fwdIcon></i>
+        </button>
+    </div>
+</div>

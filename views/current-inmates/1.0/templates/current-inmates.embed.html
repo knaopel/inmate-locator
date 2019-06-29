@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-sm-7 oc-search-box-wrapper">
+        <oc-search-box minChars="0" placeholder="Enter the First or Last Name of an inmate." title="Enter the First or Last Name or the first part of a First or Last Name to narrow the results."
+            duration="800" (issueSearch)="onSearch($event)"></oc-search-box>
+    </div>
+    <div class="col-sm-5 oc-inmates-toggle-wrapper">
+        <oc-inmates-toggle *ngIf="info.viewConfig.reportType === 'b'" [scopes]="scopes" [scope]="'bookedDate desc,lastName,firstName'" (toggle)="onSortToggle($event)"></oc-inmates-toggle>
+        <oc-inmates-toggle *ngIf="info.viewConfig.reportType === 'r'" [scopes]="scopes" [scope]="'releaseDate desc,lastName,firstName'" (toggle)="onSortToggle($event)"></oc-inmates-toggle>
+        <oc-inmates-toggle *ngIf="info.viewConfig.reportType === 'c'" (toggle)="onSortToggle($event)"></oc-inmates-toggle>
+    </div>
+</div>
+<div class="inmate-list loaded" #inmateList *ngIf="info && info.data && info.data.rows && info.data.rows.length" [ngSwitch]="info.viewConfig.reportType">
+    <ng-template [ngSwitchCase]="'b'">
+        <oc-inmate-date-group *ngFor="let grp of info?.data?.rows; let idx=index" [group]="grp" action="Booked">
+            <div class="panel-group" [id]="widgetId + '_' + idx" role="tablist" aria-mutliselectable="true">
+                <div class="oc-inmate-item" *ngFor="let inmate of grp.rows; last as isLast" [inmate]="inmate" [class]="getInmateItemClass(inmate, false, isLast)"
+                    [parentId]="widgetId +'_' + idx" [ds]="app.dataSvc.config" [showLocation]="true" [showBond]="true"
+                    [showRelease]="false" [isLast]="isLast" [dateToShow]="'booked'"></div>
+            </div>
+        </oc-inmate-date-group>
+    </ng-template>
+    <ng-template [ngSwitchCase]="'r'">
+        <oc-inmate-date-group *ngFor="let grp of info?.data?.rows let idx=index" [group]="grp" action="Released">
+            <div class="panel-group" [id]="widgetId + '_' + idx" role="tablist" aria-mutliselectable="true">
+                <div class="oc-inmate-item" *ngFor="let inmate of grp.rows; last as isLast" [inmate]="inmate" [class]="getInmateItemClass(inmate, false, isLast)"
+                    [parentId]="widgetId + '_' + idx" [ds]="app.dataSvc.config" [showLocation]="false" [showBond]="false"
+                    [showRelease]="true" [isLast]="isLast" [dateToShow]="'released'"></div>
+            </div>
+        </oc-inmate-date-group>
+    </ng-template>
+    <ng-template ngSwitchDefault>
+        <div class="panel-group" [id]="widgetId" role="tablist" aria-mutliselectable="true">
+            <div class="oc-inmate-item" *ngFor="let inmate of info?.data?.rows" [class]="getInmateItemClass(inmate, true)"
+                [inmate]="inmate" [showCharges]="true" [parentId]="widgetId" [ds]="app.dataSvc.config" [showLocation]="true"
+                [showBond]="false" [showRelease]="false" [dateToShow]="'booked'"></div>
+        </div>
+    </ng-template>
+</div>
+<div *ngIf="!(info && info.data && info.data.rows && info.data.rows.length)" style="padding: 1em 1em 0 1em;">There were no results</div>
+<oc-inmates-paging *ngIf="(info && info.data && info.data.rows && info.data.rows.length)" (navigate)="onNavigate($event)" [pagesize]="30" [(first)]="first" [total]="info.data.count" [(loadComplete)]="onLoadComplete"></oc-inmates-paging>
+<oc-inmates-sync [ds]="app.data.configs[app.data.current]"></oc-inmates-sync>
+<!-- <span>JSON: </span><span>{{ info.data | json }}</span> -->

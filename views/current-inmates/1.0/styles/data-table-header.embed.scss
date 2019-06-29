@@ -1,0 +1,4 @@
+:host ::ng-deep .ui-datatable-header { font-weight: bold; }
+:host /deep/ .ui-datatable-thead tr th:nth-child(5) {
+    white-space: nowrap;
+}

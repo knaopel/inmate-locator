@@ -1,0 +1,68 @@
+<div class="panel-heading" role="tab" [id]="'heading-'+ getItemId()">
+    <h3 class="panel-title" [title]="showCharges && inmate.activeHolds ? 'This inmate has acitve holds.' : ''">
+        <a role="button" data-toggle="collapse" [attr.data-parent]="'#' + parentId" [href]="'#' + getItemId()"
+            aria-expanded="false" [attr.aria-controls]="getItemId()" (click)="togglePanel($event)">
+            <div class="row">
+                <div class="col-sm-8">
+                    <i class="fa fa-chevron-down"></i> {{inmate.lastName}}, {{inmate.firstName}} {{inmate.middleName}}
+                </div>
+                <div class="col-sm-4 oc-inmates-timestamp">
+                    <span class="smaller" title="{{inmate.lastName}}, {{inmate.firstName}} {{inmate.middleName}} was {{ dateToShow | titleCase }} {{ inmate[dateToShow] | date: 'short' }}">{{inmate[dateToShow] | date : 'shortDate' }}&nbsp;&nbsp;{{inmate[dateToShow] | date : 'shortTime' | lowercase}}</span>
+                </div>
+            </div>
+        </a>
+    </h3>
+</div>
+<div [id]="getItemId()" class="panel-collapse collapse" role="tabpanel" [attr.aria-labelledby]="'heading-' + getItemId()">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-sm-8">
+                <div>
+                    <strong>Inmate ID:</strong> {{inmate.id}}</div>
+                <div>
+                    <strong>Gender:</strong> {{inmate.gender}}</div>
+                <div *ngIf="showLocation">
+                    <strong>Jail Location:</strong> {{inmate.jailLocation}}</div>
+                <div *ngIf="showBond">
+                    <strong>Bond Amount:</strong>
+                    <span>{{inmate.bondAmount | currency:'USD':true:'1.2-2' | zeroAsDash}}</span>
+                </div>
+                <div>
+                    <strong>Birth Date:</strong>
+                    <span *ngIf="inmate.birthDate">{{inmate.birthDate | dateNoTime | date : 'shortDate' }}</span>
+                </div>
+                <div>
+                    <strong>Booked:</strong>
+                    <span *ngIf="inmate.booked">{{inmate.booked | date : 'shortDate' }}&nbsp;&nbsp;{{inmate.booked | date : 'shortTime' | lowercase}}</span>
+                </div>
+                <div *ngIf="showRelease">
+                    <strong>Released:</strong>
+                    <span *ngIf="inmate.released">{{inmate.released | date: 'shortDate'}}&nbsp;&nbsp;{{inmate.released | date: 'shortTime' | lowercase}}</span>
+                </div>
+            </div>
+            <div class="col-sm-4 text-center">
+                <span *ngIf="inmate.inmateImage == null || inmateImage === '' || inmate.inmateImage == 'data:image/jpeg;base64,' then noImg else inmateImg"></span>
+            </div>
+        </div>
+        <div *ngIf="showCharges">
+            <p-dataTable [value]="inmate.charges" [responsive]="true" styleClass="oc-inmate-table">
+                <p-header>Charges</p-header>
+                <p-column field="bondAmount" header="Bond Amount" [bodyStyleClass]="'oc-table-right'">
+                    <ng-template let-col let-charge="rowData" let-ri="index" pTemplate="body">
+                        <span>{{charge[col.field] | currency:'USD':true:'1.2-2' | zeroAsDash}}</span>
+                    </ng-template>
+                </p-column>
+                <p-column field="bondDescription" header="Bond Type"></p-column>
+                <p-column field="charge" header="Charge"></p-column>
+                <p-column field="court" header="Court"></p-column>
+            </p-dataTable>
+            <oc-inmate-holds *ngIf="inmate.activeHolds" [parentId]="parentId" [inmateId]="inmate.id" [ds]="ds"></oc-inmate-holds>
+        </div>
+    </div>
+</div>
+<ng-template #noImg>
+    <img src="/_cdn/common/images/no-image-placeholder.jpg" [id]="'image-' + getItemId()" class="img-inmate" [alt]="inmate.lastName + ', ' + inmate.firstName + ' ' + inmate.middleName">
+</ng-template>
+<ng-template #inmateImg>
+    <img [src]="inmate.inmateImage" [id]="'image-' + getItemId()" class="img-inmate" [alt]="inmate.lastName + ', ' + inmate.firstName + ' ' + inmate.middleName">
+</ng-template>

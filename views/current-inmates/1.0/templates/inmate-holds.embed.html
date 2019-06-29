@@ -1,0 +1,28 @@
+<div class="panel panel-primary">
+    <div class="panel-heading" role="tab" [id]="parentId + '-heading-' + inmateId">
+        <h4 class="panel-title">
+            <a class="collapsed" role="button" data-toggle="collapse" [href]="'#' + parentId + '-collapse-' + inmateId" aria-expanded="false"
+                [attr.aria-controls]="parentId + '-collapse-' + inmateId" (click)="loadData($event)">
+                <i class="fa fa-chevron-down"></i>
+                Hold Information
+            </a>
+        </h4>
+    </div>
+    <div [id]="parentId + '-collapse-' + inmateId" class="panel-collapse collapse" role="tabpanel" [attr.aria-labelledby]="parentId + '-heading-' + inmateId">
+        <div class="panel-body" #panelbody>
+            <p-dataTable [value]="holds" [responsive]="true" styleClass="oc-inmate-table">
+                    <p-header>Holds</p-header>
+                    <p-column field="bondAmount" header="Bond Amount" [bodyStyleClass]="'oc-table-right'">
+                    <ng-template let-col let-hold="rowData" let-ri="index" pTemplate="body">
+                        <span>{{hold[col.field] | currency:'USD':true:'1.2-2' | zeroAsDash}}</span>
+                    </ng-template>
+                </p-column>
+                <p-column field="bondType" header="Bond Type"></p-column>
+                <p-column field="charge" header="Charge"></p-column>
+                <p-column field="holdAgency" header="Hold Agency"></p-column>
+                <!-- <p-column field="warrantNum" header="Warrant #"></p-column> -->
+                <p-column field="comment" header="Comment"></p-column>
+            </p-dataTable>
+        </div>
+    </div>
+</div>
